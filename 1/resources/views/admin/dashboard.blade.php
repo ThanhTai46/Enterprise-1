@@ -1,0 +1,1 @@
+dành cho admin,  bây code tiếp đi
