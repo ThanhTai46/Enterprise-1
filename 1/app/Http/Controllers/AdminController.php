@@ -7,6 +7,7 @@ use DB;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
+use App\Account;
 
 class AdminController extends Controller
 {
@@ -26,5 +27,19 @@ class AdminController extends Controller
         }else{
             return Redirect()->Route('ADMIN')->with('message','Sai thông tin!');
         }
+    }
+
+    //Add Account
+    // public function addNewAccount(){
+    //     return view('admin.account.add_account');
+    // }
+
+    // public function executeAddNewAccount(Request $request){
+    //     $account = new Account();
+    //     // $account->account_email = $data[];
+    // }
+    //Manage Account
+    public function managementAccount(){
+        return view('admin.account.manage_account');
     }
 }

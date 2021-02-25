@@ -19,3 +19,9 @@ Route::get('/', function () {
 
 Route::get('loginadmin','AdminController@getPageForAdmin')->name('ADMIN');
 Route::post('executeLoginAdmin','AdminController@checkLoginForAdmin');
+
+//Admin For Execute Account (Admin thực thi các Account)
+Route::get('add_account','AccountController@create')->name('ADD_ACCOUNT');
+Route::post('addaccount','AccountController@store');
+
+Route::get('management_account','AdminController@managementAccount')->name('MANAGEMENT_ACCOUNT');
