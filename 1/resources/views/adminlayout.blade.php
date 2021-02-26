@@ -4,6 +4,7 @@
   {{-- <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
   <title>AdminLTE 3 | Dashboard</title>
+  
   {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
     <link rel="stylesheet" href="{{asset('AdminTemplate/plugins/fontawesome-free/css/all.min.css')}}">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -113,9 +114,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('MANAGEMENT_FACULTY')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+                  <p>Faculty Manage</p>
                 </a>
               </li>
               <li class="nav-item">
