@@ -35,3 +35,20 @@ Route::post('addfaculty','FacultyController@addProcess');
 Route::get('management_faculty/edit_faculty/{id}', 'FacultyController@edit');
 Route::patch('management_faculty/{id}', 'FacultyController@editProcess');
 Route::delete('management_faculty/{id}','FacultyController@delete');
+
+// coordinator 
+Route::get('management_coordinator','CoordinatorController@manage_coordinator')->name('MANAGEMENT_COORDINATOR');
+Route::get('create_coordinator','CoordinatorController@add')->name('ADD_COORDINATOR');
+Route::post('addcoordinator','CoordinatorController@storedCoordinator');
+Route::get('management_coordinator/edit_coordinator/{id}', 'CoordinatorController@edit');
+Route::patch('management_coordinator/{id}', 'CoordinatorController@editProcess');
+Route::delete('management_coordinator/{id}','CoordinatorController@delete');
+
+// Charts
+Route::get('charts','ChartsController@index')->name('CHARTS');
+
+//contribution
+
+Route::get('contributions', 'CoordinatorController@contributions')->name('MANAGEMENT_CONTRIBUTION');
+Route::get('comment', 'CoordinatorController@comment')->name('COMMENTS');
+

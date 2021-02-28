@@ -3,10 +3,10 @@
 <head>
   {{-- <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
-  <title>AdminLTE 3 | Dashboard</title>
-  
+  <title>Admin | Dashboard</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
   {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
-    <link rel="stylesheet" href="{{asset('AdminTemplate/plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="{{asset('AdminTemplate/plugins/fontawesome-free/css/all.min.css')}}">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="{{asset('AdminTemplate/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <link rel="stylesheet" href="{{asset('AdminTemplate/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="{{asset('AdminTemplate/plugins/daterangepicker/daterangepicker.css')}}">
   <link rel="stylesheet" href="{{asset('AdminTemplate/plugins/summernote/summernote-bs4.css')}}">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style type="text/css">/* Chart.js */
+    @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -55,7 +57,7 @@
     <a href="index3.html" class="brand-link">
       <img src="{{asset('AdminTemplate/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Admin</span>
     </a>
 
     <!-- Sidebar -->
@@ -63,7 +65,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('AdminTemplate/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('AdminTemplate/dist/img/avatar.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -120,9 +122,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="{{route('CHARTS')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
+                  <p>Chart</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -143,21 +145,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
+                <a href="{{route('MANAGEMENT_COORDINATOR')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>General</p>
+                  <p>Coordinator Management</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
+                <a href="{{route('MANAGEMENT_CONTRIBUTION')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Icons</p>
+                  <p>View Contribution</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/buttons.html" class="nav-link">
+                <a href="{{route('COMMENTS')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Buttons</p>
+                  <p>Comment Contribution</p>
                 </a>
               </li>
             </ul>
@@ -254,11 +256,16 @@
 </div>
 <!-- ./wrapper -->
 
+
 <script src="{{asset('AdminTemplate/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('AdminTemplate/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
+<script src="{{asset('AdminTemplate/dist/js/pages/dashboard3.js')}}"></script>
+
+
+
 <script src="{{asset('AdminTemplate/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('AdminTemplate/plugins/chart.js/Chart.min.js')}}"></script>
 <script src="{{asset('AdminTemplate/plugins/sparklines/sparkline.js')}}"></script>
@@ -273,5 +280,11 @@
 <script src="{{asset('AdminTemplate/dist/js/adminlte.js')}}"></script>
 <script src="{{asset('AdminTemplate/dist/js/pages/dashboard.js')}}"></script>
 <script src="{{asset('AdminTemplate/dist/js/demo.js')}}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </body>
 </html>

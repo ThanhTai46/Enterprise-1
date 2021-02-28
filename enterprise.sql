@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2021 at 06:08 AM
+-- Generation Time: Feb 28, 2021 at 01:54 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -77,6 +77,13 @@ CREATE TABLE `cordinator` (
   `Faculity_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `cordinator`
+--
+
+INSERT INTO `cordinator` (`Cordinator_id`, `Cordinator_name`, `Cordinator_email`, `Cordinator_phone`, `Cordinator_address`, `Faculity_name`) VALUES
+(3, 'Lê Thành Tài', 'luxurydemon123@gmail.com', 949983492, '1233', 'Tin học văn phòng');
+
 -- --------------------------------------------------------
 
 --
@@ -94,18 +101,7 @@ CREATE TABLE `faculity` (
 --
 
 INSERT INTO `faculity` (`Faculity_id`, `Faculity_name`, `Faculity_description`) VALUES
-(2, 'Khóa Ngoại ngữ', 'Ngoại ngữ tiếng trung tiếng nhật'),
-(3, 'nguyen van a', 'ád'),
-(4, 'nguyen van a', 'a'),
-(5, 'Khóa Ngoại ngữ', 'abc'),
-(6, 'username', 'a'),
-(7, 'Khóa Ngoại ngữ', 't565'),
-(8, 'Khóa Ngoại ngữ', 'nội dung 2'),
-(9, 'k', 'nội dung 2'),
-(10, 'nguyen van a', 'ád'),
-(11, 'k', 'ád'),
-(12, '=', 'mô tả cho ngành Tin học'),
-(13, 'abc', 'mô tả cho ngành Tin học');
+(15, 'Tin học văn phòng', 'Nội dung của tin học văn phòng');
 
 -- --------------------------------------------------------
 
@@ -159,6 +155,19 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `statistical`
+--
+
+CREATE TABLE `statistical` (
+  `id_statistical` int(11) NOT NULL,
+  `Faculity_name` varchar(255) NOT NULL,
+  `Student_uploadfile` varchar(255) NOT NULL,
+  `date-upload` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `student`
 --
 
@@ -168,6 +177,13 @@ CREATE TABLE `student` (
   `Student_uploadfile` varchar(255) NOT NULL,
   `Student_description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`Student_id`, `Student_image`, `Student_uploadfile`, `Student_description`) VALUES
+(1, 'sdas', 'asdasd', 'asdasd');
 
 -- --------------------------------------------------------
 
@@ -252,13 +268,15 @@ ALTER TABLE `admin`
 -- Indexes for table `cordinator`
 --
 ALTER TABLE `cordinator`
-  ADD PRIMARY KEY (`Cordinator_id`);
+  ADD PRIMARY KEY (`Cordinator_id`),
+  ADD KEY `Faculity_name` (`Faculity_name`);
 
 --
 -- Indexes for table `faculity`
 --
 ALTER TABLE `faculity`
-  ADD PRIMARY KEY (`Faculity_id`);
+  ADD PRIMARY KEY (`Faculity_id`),
+  ADD KEY `Faculity_name` (`Faculity_name`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -279,10 +297,19 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `statistical`
+--
+ALTER TABLE `statistical`
+  ADD PRIMARY KEY (`id_statistical`),
+  ADD KEY `Faculity_name` (`Faculity_name`),
+  ADD KEY `Student_uploadfile` (`Student_uploadfile`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`Student_id`);
+  ADD PRIMARY KEY (`Student_id`),
+  ADD KEY `Student_uploadfile` (`Student_uploadfile`);
 
 --
 -- Indexes for table `students`
@@ -317,13 +344,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cordinator`
 --
 ALTER TABLE `cordinator`
-  MODIFY `Cordinator_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Cordinator_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `faculity`
 --
 ALTER TABLE `faculity`
-  MODIFY `Faculity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `Faculity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -338,10 +365,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `statistical`
+--
+ALTER TABLE `statistical`
+  MODIFY `id_statistical` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `Student_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -354,6 +387,23 @@ ALTER TABLE `students`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `cordinator`
+--
+ALTER TABLE `cordinator`
+  ADD CONSTRAINT `cordinator_ibfk_1` FOREIGN KEY (`Faculity_name`) REFERENCES `faculity` (`Faculity_name`);
+
+--
+-- Constraints for table `statistical`
+--
+ALTER TABLE `statistical`
+  ADD CONSTRAINT `statistical_ibfk_1` FOREIGN KEY (`Faculity_name`) REFERENCES `faculity` (`Faculity_name`),
+  ADD CONSTRAINT `statistical_ibfk_2` FOREIGN KEY (`Student_uploadfile`) REFERENCES `student` (`Student_uploadfile`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
