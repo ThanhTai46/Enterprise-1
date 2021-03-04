@@ -1,0 +1,20 @@
+git checkout -b branch_name (neu chua co branch)
+git checkout branch_name (neu co )
+git status ( xem nhung file da thay doi )
+git add . (add nhung file da thay doi vao  stg)
+git add file_name ( add tung` file)
+git commit -m "message" ( commit lai de day? len git)
+git commit --amend ( neu co commit truoc roi muon gop chung vao`)
+git push origin branch_name ( day? len)
+
+
+Co' code moi' thi: 
+git fetch origin develop:develop (keo' code tu nhanh develop xun' local de? co' code moi' nhat')
+git rebase develop ( dung' tu` nhanh' hien. tai rebase voi develop de? nhanh hien tai co' code moi')
+
+TH1: Khong co confilict thi lam` tiep
+TH:2 Neu co confilict thi fix confilict -> git add . -> git rebase --continue
+
+xong roi thi commit -> push len nhu binh` thuong`
+
+o? day la chua co key neu no khong cho push len -> lac tim hieu ssh key windows

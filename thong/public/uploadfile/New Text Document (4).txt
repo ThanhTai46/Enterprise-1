@@ -1,0 +1,30 @@
+get price => ok
+get name => ok
+get img => ok
+
+dung id cua product lam key khi dua vao obj cha
+{
+  1: {
+      img:...,
+      price:...
+      name:...
+      qty:1
+  },
+  2: {
+      img:...,
+      price:...
+      name:...
+      qty:1
+  },
+  3: {
+      img:...,
+      price:...
+      name:...
+      qty:1
+  }
+}
+=> local
+
+đặt mỗi product 1 id tu 1-6
+
+va lấy id làm key
