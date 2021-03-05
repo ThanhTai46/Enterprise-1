@@ -55,8 +55,9 @@ Route::get('management_coordinator/edit_coordinator/{id}', 'CoordinatorControlle
 Route::patch('management_coordinator/{id}', 'CoordinatorController@editProcess');
 Route::delete('management_coordinator/{id}','CoordinatorController@delete');
 
-// Comment
+// Coordinator Front End Function
+Route::get('viewContribution','CoordinatorController@viewcontribution')->name('VIEW_CONTRIBUTION');
+Route::get('addcomment/{id}', 'CoordinatorController@addcomment');
+// Route::post('add_comment', 'CoordinatorController@addCommentProcess');
 
-
-Route::post('addcomment','CoordinatorController@handlerComment');
-Route::get('dashboardComment', 'CoordinatorController@comment')->name('COMMENT');
+Route::patch('addcomment/{id}','CoordinatorController@addCommentProcess');

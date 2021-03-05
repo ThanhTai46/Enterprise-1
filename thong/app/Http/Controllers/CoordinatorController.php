@@ -26,7 +26,7 @@ class CoordinatorController extends Controller
         $coordinator = DB::table('cordinator')->get();
         
         //return view('admin.faculity.manage_faculty',['faculity' => $faculity] );
-        return view('admin.coordinator.function.manage_coordinator')->with('coordinator',$coordinator);
+        return view('admin.coordinator.manage_coordinator')->with('coordinator',$coordinator);
     }
 
     /**
@@ -70,7 +70,7 @@ class CoordinatorController extends Controller
         $coordinator = DB::table('cordinator')->where('cordinator_id', $id)->first();
         
       
-        return view('admin.coordinator.function.edit_cordinator' , compact('coordinator')) ->with('faculity',$faculity);
+        return view('admin.coordinator.edit_cordinator' , compact('coordinator')) ->with('faculity',$faculity);
     }
 
     public function editProcess(Request $request, $id)
@@ -104,30 +104,53 @@ class CoordinatorController extends Controller
     //     return view ('admin.contributions.index');
     // }
 
-    
+    // public function comment()
+    // {
+    //     return view ('admin.contributions.comment');
+    // }
+
+    // Coordinator Front End Function
     public function CoordinatorDashboard(){
-        return view('admin.coordinator.dashboardCoordinator');
+        return view('coordinatorFE.dashboardCoordinator');
     }
 
-
-
-
-    //Comment Coordinator
-
-    public function comment()
+    public function viewcontribution(){
+        $student = DB::table('student')->get();
+        
+        //return $student;
+        return view('coordinatorFE.function.view_contribution')->with('student', $student);
+    }
+    public function addcomment($id)
     {
-        $comment = DB::table('comment')->get();
-        $comment = Student::all();
-        // dd($comment);
-        return view ('admin.coordinator.comment.dashboardComment',['comment' =>$comment]);
+        $addcomment = DB::table('student')->where('student_id', $id)->first();
+        // dd($addcomment);
+        return view('coordinatorFE.function.comment_contribution', compact('addcomment'));
     }
-    public function handlerComment(Request $request) {
-        DB::table('comment')->insert([
-            'student_uploadfide' => $request-> Null,
-            'description' => $request->comment
-        ]);
-        return redirect('management_coordinator')->with('status', 'Add Coordinator Successful!');
+
+
+
+    // public function addcomment($id)
+    // {
+    //     $student = DB::table('Student')->get();
+    //      $addcomment = DB::table('student')->where('student_id', $id)->first();
+    //     $addcomment = DB::table('Student')->where('student_id', $id)->first();
+        
+    //     dd($addcomment);
+    //     return view('coordinatorFE.function.view_contribution', compact('addcomment')) -> with('student',$student);
+    // }
+
+    public function addCommentProcess(Request $request , $id)
+    {
+        DB::table('student')->where('student_id', $id)
+            ->update([
+                'comment' => $request->comment,
+
+            ]);
+            
+        return redirect('viewContribution')->with('status', 'Comment Successful!');
+
+        //return redirect('viewContribution')->with('status', 'Profile updated!');
 
     }
+
 }
-

@@ -58,6 +58,7 @@
 
     @yield('admin_content')
     @yield('student_content')
+    @yield('coordinator_content')
     <!-- Main content -->
     <!-- /.content -->
   </div>
@@ -97,5 +98,21 @@
 <script src="{{asset('AdminTemplate/dist/js/adminlte.js')}}"></script>
 <script src="{{asset('AdminTemplate/dist/js/pages/dashboard.js')}}"></script>
 <script src="{{asset('AdminTemplate/dist/js/demo.js')}}"></script>
+<!-- <script>
+ document.addEventListener("DOMContentLoaded", function(event) {
+  $('.btn-add-comment').click(function(event) {
+    $('.form-add-comment').submit();
+  });
+  
+  
+  
+    
+  });
+  
+  
+    
+ 
+
+</script> -->
 </body>
 </html>

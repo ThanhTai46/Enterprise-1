@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2021 at 03:11 PM
+-- Generation Time: Mar 05, 2021 at 09:02 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -75,8 +75,8 @@ INSERT INTO `admin` (`admin_id`, `admin_email`, `admin_password`, `admin_name`) 
 
 CREATE TABLE `comment` (
   `comment_id` int(11) NOT NULL,
-  `student_uploadfile` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL
+  `description` varchar(255) NOT NULL,
+  `student_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -182,15 +182,18 @@ CREATE TABLE `student` (
   `student_uploadfile` varchar(255) NOT NULL,
   `student_uploadimage` varchar(255) NOT NULL,
   `student_description` varchar(255) NOT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `comment` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `created_at`, `student_uploadfile`, `student_uploadimage`, `student_description`, `updated_at`) VALUES
-(129, '2021-03-04 13:48:41', '-ethics.pptx', '1.png', 'abc', NULL);
+INSERT INTO `student` (`student_id`, `created_at`, `student_uploadfile`, `student_uploadimage`, `student_description`, `updated_at`, `comment`) VALUES
+(133, '2021-03-05 04:24:55', 'ProductBacklog and SprintBacklog Examples (1).xlsx', 'chart.png', 'test', NULL, 'abc'),
+(134, '2021-03-05 04:25:18', '-ethics.pptx', 'chart.png', 'abcyz', NULL, 'ngu'),
+(136, NULL, 'asd', 'basd', 'asd', NULL, 'ád');
 
 -- --------------------------------------------------------
 
@@ -230,7 +233,7 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `student_uploadfile` (`student_uploadfile`);
+  ADD KEY `student_id` (`student_id`);
 
 --
 -- Indexes for table `cordinator`
@@ -333,7 +336,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -349,7 +352,7 @@ ALTER TABLE `users`
 -- Constraints for table `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`student_uploadfile`) REFERENCES `student` (`student_uploadfile`);
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
 
 --
 -- Constraints for table `cordinator`

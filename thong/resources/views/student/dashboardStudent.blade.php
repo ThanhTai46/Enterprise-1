@@ -79,5 +79,5 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-  Welcome to Student!
+  Welcome Student!
 @endsection

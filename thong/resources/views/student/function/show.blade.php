@@ -59,7 +59,6 @@
                   <th>Date Update Upload</th>
                   <th>Edit</th>
                   <th>Download</th>
-                  <th>Comment</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -86,13 +85,6 @@
                     <a style="color: white" href="uploadfile/{{$datas->student_uploadfile}}" download="{{$datas->student_uploadfile}}" class="btn btn-danger">
                       <i class="fa fa-download"></i>
                       Download
-                    </a>
-                  </td>
-
-                  <td>
-                    <a style="color: white" href="" class="btn btn-primary">
-                      <i class="fas fa-eye"></i>
-                      View Comment
                     </a>
                   </td>
                 </tr>
