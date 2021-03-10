@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2021 at 09:02 AM
+-- Generation Time: Mar 10, 2021 at 02:05 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -44,8 +44,8 @@ INSERT INTO `account` (`account_id`, `account_email`, `account_password`, `accou
 (49, 'asd@gmail.com', 'asd444', 'hieu.jpg', 3),
 (50, 'student1@fpt.edu.vn', 'student1', '123.jpg', 2),
 (51, 'coordinator@gmail.com', 'coordinator', 'C4.jpg', 2),
-(52, 'student2@fpt.edu.vn', '123', '4.jpg', 3),
-(53, 'HieuLuu@gmail.com', '123', '7.png', 3);
+(54, 'taile@gmail.com', '123', '140196328_458778105527868_4361509525785909147_n.png', 2),
+(55, 'student1@fpt.edu.vn', '123', 'Comparison-of-the-advantages-and-disadvantages-of-the-plan-driven-and-agile-processes.png', 3);
 
 -- --------------------------------------------------------
 
@@ -66,6 +66,18 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`admin_id`, `admin_email`, `admin_password`, `admin_name`) VALUES
 (3, 'nguyenquangthong1999@gmail.com', '1', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class_schedulings`
+--
+
+CREATE TABLE `class_schedulings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -94,13 +106,6 @@ CREATE TABLE `cordinator` (
   `faculity_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `cordinator`
---
-
-INSERT INTO `cordinator` (`cordinator_id`, `cordinator_name`, `cordinator_email`, `cordinator_phone`, `cordinator_address`, `faculity_name`) VALUES
-(4, 'Lê Thành Tài', 'luxurydemon123@gmail.com', 949983492, '1233', 'Technology');
-
 -- --------------------------------------------------------
 
 --
@@ -120,7 +125,8 @@ CREATE TABLE `faculity` (
 INSERT INTO `faculity` (`faculity_id`, `faculity_name`, `faculity_description`) VALUES
 (11, 'Technology', 'IT never die'),
 (14, 'Bussiness', 'Bussiness123'),
-(15, 'IT', 'Tài ');
+(15, 'IT', 'Tài '),
+(16, 'Skill đá bóng', 'Tài Ronaldo');
 
 -- --------------------------------------------------------
 
@@ -156,7 +162,9 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1);
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2021_03_10_074508_create_semester_table', 2),
+(5, '2021_03_10_074837_create_schedulings_table', 2);
 
 -- --------------------------------------------------------
 
@@ -173,6 +181,27 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `semester`
+--
+
+CREATE TABLE `semester` (
+  `semester_id` bigint(20) UNSIGNED NOT NULL,
+  `semester_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `semester`
+--
+
+INSERT INTO `semester` (`semester_id`, `semester_name`, `start_date`, `end_date`) VALUES
+(3, 'Sprint 2020', '2021-03-10', '2021-03-13'),
+(5, 'Sprint 2021', '2021-03-10', '2021-03-27');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `student`
 --
 
@@ -183,7 +212,7 @@ CREATE TABLE `student` (
   `student_uploadimage` varchar(255) NOT NULL,
   `student_description` varchar(255) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `comment` varchar(255) NOT NULL
+  `comment` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -192,8 +221,11 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`student_id`, `created_at`, `student_uploadfile`, `student_uploadimage`, `student_description`, `updated_at`, `comment`) VALUES
 (133, '2021-03-05 04:24:55', 'ProductBacklog and SprintBacklog Examples (1).xlsx', 'chart.png', 'test', NULL, 'abc'),
-(134, '2021-03-05 04:25:18', '-ethics.pptx', 'chart.png', 'abcyz', NULL, 'ngu'),
-(136, NULL, 'asd', 'basd', 'asd', NULL, 'ád');
+(134, '2021-03-05 04:25:18', '-ethics.pptx', 'chart.png', 'abcyz', NULL, 'hay quá'),
+(136, NULL, 'asd', 'basd', 'asd', NULL, 'ád'),
+(137, '2021-03-05 09:01:33', 'COMP1682_Sample1 201819 Proposal.html', '1.png', 'tesst lan 2', NULL, NULL),
+(138, '2021-03-05 09:01:33', 'COMP1682_Sample1 201819 Proposal.html', '1.png', 'tesst lan 2', NULL, NULL),
+(139, '2021-03-06 14:58:01', 'Weekly-report (3).xlsx', 'images.png', 'Đây là bài execl của tôi', NULL, 'Bài của Tùng quá là ngu lz !!!!');
 
 -- --------------------------------------------------------
 
@@ -227,6 +259,12 @@ ALTER TABLE `account`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `class_schedulings`
+--
+ALTER TABLE `class_schedulings`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `comment`
@@ -273,6 +311,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `semester`
+--
+ALTER TABLE `semester`
+  ADD PRIMARY KEY (`semester_id`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
@@ -294,13 +338,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `account_id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `class_schedulings`
+--
+ALTER TABLE `class_schedulings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -318,7 +368,7 @@ ALTER TABLE `cordinator`
 -- AUTO_INCREMENT for table `faculity`
 --
 ALTER TABLE `faculity`
-  MODIFY `faculity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `faculity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -330,13 +380,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `semester`
+--
+ALTER TABLE `semester`
+  MODIFY `semester_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
 
 --
 -- AUTO_INCREMENT for table `users`

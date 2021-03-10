@@ -59,6 +59,7 @@
                   <th>Date Update Upload</th>
                   <th>Edit</th>
                   <th>Download</th>
+                  <th>Comment</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -87,6 +88,9 @@
                       Download
                     </a>
                   </td>
+
+                  <td>{{$datas->comment}}</td>
+                 
                 </tr>
                 @endforeach
                 </tbody>

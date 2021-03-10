@@ -38,7 +38,7 @@ class CoordinatorController extends Controller
     {
         $faculity = DB::table('faculity')->get();
         // $data = Account::all();
-        return view('admin.coordinator.function.create_coordinator') ->with('faculity',$faculity);
+        return view('admin.coordinator.create_coordinator') ->with('faculity',$faculity);
     }
 
     public function storedCoordinator(Request $request)

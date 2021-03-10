@@ -61,3 +61,11 @@ Route::get('addcomment/{id}', 'CoordinatorController@addcomment');
 // Route::post('add_comment', 'CoordinatorController@addCommentProcess');
 
 Route::patch('addcomment/{id}','CoordinatorController@addCommentProcess');
+
+
+// Semester 
+Route::get('semester', 'SemesterController@index')->name('MANAGEMENT_SEMESTER');
+Route::get('add_semester', 'SemesterController@add_semester')->name('ADD_SEMESTER');
+Route::post('semester', 'SemesterController@addSemesterProcess');
+Route::delete('semester/{id}','SemesterController@deleteSemester');
+
