@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2021 at 02:05 PM
+-- Generation Time: Mar 12, 2021 at 04:13 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -45,7 +45,8 @@ INSERT INTO `account` (`account_id`, `account_email`, `account_password`, `accou
 (50, 'student1@fpt.edu.vn', 'student1', '123.jpg', 2),
 (51, 'coordinator@gmail.com', 'coordinator', 'C4.jpg', 2),
 (54, 'taile@gmail.com', '123', '140196328_458778105527868_4361509525785909147_n.png', 2),
-(55, 'student1@fpt.edu.vn', '123', 'Comparison-of-the-advantages-and-disadvantages-of-the-plan-driven-and-agile-processes.png', 3);
+(55, 'student1@fpt.edu.vn', '123', 'Comparison-of-the-advantages-and-disadvantages-of-the-plan-driven-and-agile-processes.png', 3),
+(56, 'lethanhtai@gmail.com', 'thanhtai', 'avatar.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -191,14 +192,6 @@ CREATE TABLE `semester` (
   `end_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `semester`
---
-
-INSERT INTO `semester` (`semester_id`, `semester_name`, `start_date`, `end_date`) VALUES
-(3, 'Sprint 2020', '2021-03-10', '2021-03-13'),
-(5, 'Sprint 2021', '2021-03-10', '2021-03-27');
-
 -- --------------------------------------------------------
 
 --
@@ -212,20 +205,9 @@ CREATE TABLE `student` (
   `student_uploadimage` varchar(255) NOT NULL,
   `student_description` varchar(255) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `comment` varchar(255) DEFAULT NULL
+  `comment` varchar(255) DEFAULT NULL,
+  `semester_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`student_id`, `created_at`, `student_uploadfile`, `student_uploadimage`, `student_description`, `updated_at`, `comment`) VALUES
-(133, '2021-03-05 04:24:55', 'ProductBacklog and SprintBacklog Examples (1).xlsx', 'chart.png', 'test', NULL, 'abc'),
-(134, '2021-03-05 04:25:18', '-ethics.pptx', 'chart.png', 'abcyz', NULL, 'hay quá'),
-(136, NULL, 'asd', 'basd', 'asd', NULL, 'ád'),
-(137, '2021-03-05 09:01:33', 'COMP1682_Sample1 201819 Proposal.html', '1.png', 'tesst lan 2', NULL, NULL),
-(138, '2021-03-05 09:01:33', 'COMP1682_Sample1 201819 Proposal.html', '1.png', 'tesst lan 2', NULL, NULL),
-(139, '2021-03-06 14:58:01', 'Weekly-report (3).xlsx', 'images.png', 'Đây là bài execl của tôi', NULL, 'Bài của Tùng quá là ngu lz !!!!');
 
 -- --------------------------------------------------------
 
@@ -321,7 +303,7 @@ ALTER TABLE `semester`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`student_id`),
-  ADD KEY `student_uploadfile` (`student_uploadfile`);
+  ADD KEY `semester_id` (`semester_id`);
 
 --
 -- Indexes for table `users`
@@ -338,7 +320,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `account_id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -415,6 +397,12 @@ ALTER TABLE `comment`
 --
 ALTER TABLE `cordinator`
   ADD CONSTRAINT `cordinator_ibfk_1` FOREIGN KEY (`faculity_name`) REFERENCES `faculity` (`faculity_name`);
+
+--
+-- Constraints for table `student`
+--
+ALTER TABLE `student`
+  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`semester_id`) REFERENCES `semester` (`semester_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
