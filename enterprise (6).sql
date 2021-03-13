@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2021 at 04:13 AM
+-- Generation Time: Mar 13, 2021 at 12:33 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -67,18 +67,6 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`admin_id`, `admin_email`, `admin_password`, `admin_name`) VALUES
 (3, 'nguyenquangthong1999@gmail.com', '1', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `class_schedulings`
---
-
-CREATE TABLE `class_schedulings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -186,11 +174,19 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `semester` (
-  `semester_id` bigint(20) UNSIGNED NOT NULL,
-  `semester_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `semester_id` bigint(20) NOT NULL,
+  `semester_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `semester`
+--
+
+INSERT INTO `semester` (`semester_id`, `semester_name`, `start_date`, `end_date`) VALUES
+(14, 'Spring 2020', '2021-03-13', '2021-03-16'),
+(15, 'Summer 2020', '2021-03-31', '2021-04-08');
 
 -- --------------------------------------------------------
 
@@ -206,8 +202,17 @@ CREATE TABLE `student` (
   `student_description` varchar(255) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `comment` varchar(255) DEFAULT NULL,
-  `semester_id` bigint(20) UNSIGNED NOT NULL
+  `semester_name` varchar(255) DEFAULT NULL,
+  `semester_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`student_id`, `created_at`, `student_uploadfile`, `student_uploadimage`, `student_description`, `updated_at`, `comment`, `semester_name`, `semester_id`) VALUES
+(146, NULL, 'abc', 'abc', 'abc', '2021-03-12 17:00:00', 'test', NULL, 14),
+(147, '0000-00-00 00:00:00', 'test 2', 'test 2', 'test 2', NULL, 'test 2', NULL, 15);
 
 -- --------------------------------------------------------
 
@@ -243,17 +248,10 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- Indexes for table `class_schedulings`
---
-ALTER TABLE `class_schedulings`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `student_id` (`student_id`);
+  ADD PRIMARY KEY (`comment_id`);
 
 --
 -- Indexes for table `cordinator`
@@ -296,14 +294,21 @@ ALTER TABLE `password_resets`
 -- Indexes for table `semester`
 --
 ALTER TABLE `semester`
-  ADD PRIMARY KEY (`semester_id`);
+  ADD PRIMARY KEY (`semester_id`),
+  ADD UNIQUE KEY `semester_name_3` (`semester_name`),
+  ADD KEY `semester_name` (`semester_name`),
+  ADD KEY `semester_name_2` (`semester_name`);
 
 --
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`student_id`),
+  ADD UNIQUE KEY `semester_name_3` (`semester_name`),
+  ADD KEY `semester_name` (`semester_name`),
+  ADD KEY `semester_name_2` (`semester_name`),
   ADD KEY `semester_id` (`semester_id`);
+ALTER TABLE `student` ADD FULLTEXT KEY `semester_name_4` (`semester_name`);
 
 --
 -- Indexes for table `users`
@@ -327,12 +332,6 @@ ALTER TABLE `account`
 --
 ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `class_schedulings`
---
-ALTER TABLE `class_schedulings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -368,13 +367,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `semester`
 --
 ALTER TABLE `semester`
-  MODIFY `semester_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `semester_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -385,12 +384,6 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `comment`
---
-ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
 
 --
 -- Constraints for table `cordinator`
