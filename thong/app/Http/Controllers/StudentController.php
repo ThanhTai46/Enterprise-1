@@ -21,9 +21,14 @@ class StudentController extends Controller
      */
     public function index()
     {
+        $semester = DB::table('semester')->get();
         $data = Student::all();
-        return view('student.function.show',compact('data'));
+
+        //return view('student.function.show')->with('semester', $semester);
+        return view('student.function.show',compact('data' , 'semester'));
     }
+
+  
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +37,10 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('student.function.upload_file');
+        $semester = DB::table('semester')->get();
+
+        return view('student.function.upload_file')->with('semester', $semester);
+        //return view('student.function.upload_file');
     }
 
     /**
@@ -159,6 +167,11 @@ class StudentController extends Controller
     }
 
     public function StudentDashboard(){
-        return view('student.dashboardStudent');
+
+        $semester = DB::table('semester')->get();
+
+      
+        return view('student.dashboardStudent')->with('semester', $semester);
+     
     }
 }

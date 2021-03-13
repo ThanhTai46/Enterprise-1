@@ -59,6 +59,7 @@
                   <th>Date Update Upload</th>
                   <th>Edit</th>
                   <th>Download</th>
+                  <th>Semester</th>
                   <th>Comment</th>
                 </tr>
                 </thead>
@@ -90,6 +91,7 @@
                   </td>
 
                   <td>{{$datas->comment}}</td>
+                  <td>{{$datas->semester_name}}</td>
                  
                 </tr>
                 @endforeach

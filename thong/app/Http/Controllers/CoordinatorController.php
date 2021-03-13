@@ -153,4 +153,13 @@ class CoordinatorController extends Controller
 
     }
 
+
+
+    //View statistics
+
+    public function viewstatistics()
+    {
+         return view ('coordinatorFE.function.statistics_contribution');
+    }
+
 }

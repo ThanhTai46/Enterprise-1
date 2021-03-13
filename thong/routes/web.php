@@ -38,6 +38,12 @@ Route::post('executeUpload','StudentController@store');
 Route::get('showUpload','StudentController@index')->name('SHOW_UPLOAD');
 Route::resource('show_upload','StudentController')->only('edit', 'update');
 
+
+
+
+
+
+
 //Faculty Function
 Route::get('management_faculity', 'FaculityController@manage_faculity')->name('MANAGEMENT_FACULITY');
 Route::get('add_faculity', 'FaculityController@add')->name('ADD_FACULITY');
@@ -59,6 +65,9 @@ Route::delete('management_coordinator/{id}','CoordinatorController@delete');
 Route::get('viewContribution','CoordinatorController@viewcontribution')->name('VIEW_CONTRIBUTION');
 Route::get('addcomment/{id}', 'CoordinatorController@addcomment');
 // Route::post('add_comment', 'CoordinatorController@addCommentProcess');
+
+// View STATISTICS
+Route::get('statistics','CoordinatorController@viewstatistics')->name('VIEW_STATISTICS');
 
 Route::patch('addcomment/{id}','CoordinatorController@addCommentProcess');
 

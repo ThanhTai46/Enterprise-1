@@ -46,6 +46,12 @@
                       <p>Comment Contribution</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{Route('VIEW_STATISTICS')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Statistic</p>
+                  </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

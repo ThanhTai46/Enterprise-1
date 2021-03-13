@@ -2,7 +2,7 @@
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{route('STUDENT')}}" class="brand-link">
       <img src="{{asset('AdminTemplate/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Student</span>
@@ -26,7 +26,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="" class="nav-link active">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Dashboard
@@ -79,5 +79,40 @@
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
-  Welcome Student!
+
+   
+    <div class="card-body">
+      <table id="example2" class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th hidden>id</th>
+          <th>Semester Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Action</th>
+         
+        </tr>
+        </thead>
+        <tbody>
+          @foreach($semester as $item)
+          <tr>
+            <td hidden>{{$loop->iteration}}</td>
+            <td>{{$item->semester_name}}</td>
+            <td>{{$item->start_date}}</td>
+            <td>{{$item->end_date}}</td>
+            <td><a href="{{route('FILE_UPLOAD')}}" class="btn btn-info"> Submit Article <i class="fas fa-location-arrow"></a></td>
+           
+            
+             
+
+          </tr>
+            
+            @endforeach
+        </tbody>
+      </table>
+    </div>
+ 
+    
+      
+ 
 @endsection
