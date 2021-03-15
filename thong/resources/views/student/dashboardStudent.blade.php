@@ -34,16 +34,17 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('FILE_UPLOAD')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Upload File</p>
-                </a>
-              </li>
+              <!--  -->
               <li class="nav-item">
                 <a href="{{route('SHOW_UPLOAD')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>File Management</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('VIEW_SEMESTER')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Semester</p>
                 </a>
               </li>
             </ul>

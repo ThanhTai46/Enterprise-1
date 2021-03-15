@@ -3,7 +3,7 @@
 <head>
   {{-- <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Dashboard</title>
   {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
     <link rel="stylesheet" href="{{asset('AdminTemplate/plugins/fontawesome-free/css/all.min.css')}}">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -81,9 +81,11 @@
 
 <script src="{{asset('AdminTemplate/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('AdminTemplate/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+  $.widget.bridge('uibutton', $.ui.button);
 </script>
+
 <script src="{{asset('AdminTemplate/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('AdminTemplate/plugins/chart.js/Chart.min.js')}}"></script>
 <script src="{{asset('AdminTemplate/plugins/sparklines/sparkline.js')}}"></script>
@@ -98,7 +100,8 @@
 <script src="{{asset('AdminTemplate/dist/js/adminlte.js')}}"></script>
 <script src="{{asset('AdminTemplate/dist/js/pages/dashboard.js')}}"></script>
 <script src="{{asset('AdminTemplate/dist/js/demo.js')}}"></script>
-<!-- <script>
+
+<script>
  document.addEventListener("DOMContentLoaded", function(event) {
   $('.btn-add-comment').click(function(event) {
     $('.form-add-comment').submit();
@@ -113,6 +116,6 @@
     
  
 
-</script> -->
+</script>
 </body>
 </html>

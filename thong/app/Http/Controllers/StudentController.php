@@ -21,6 +21,7 @@ class StudentController extends Controller
      */
     public function index()
     {
+
         $data = Student::all();
         return view('student.function.show',compact('data'));
     }
@@ -31,9 +32,16 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('student.function.upload_file');
+    {   
+        $semester =  DB::table('semester')->get();  
+        return view('student.function.upload_file')->with('semester',$semester);
     }
+    
+     public function viewSemester()
+     {
+        $semester =  DB::table('semester')->get();
+        return view ('student.function.viewSemester')->with('semester',$semester );
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -43,6 +51,14 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
+        $semester = DB::table('semester')->first();
+
+      //$semester = DB::table('semester')->get();
+
+       $deadline =  $semester -> end_date;
+       // dd($deadline);
+       
+
         $add = new Student;
         if($request->file('student_uploadimage')){
             $destination_path1 = 'imageStudent';
@@ -60,10 +76,12 @@ class StudentController extends Controller
         }
         // $created_at = $now;
         $add->student_description = $request->student_description;
+      
         $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $add->created_at = now();
 
+       
         $getId = Account::all();
         foreach($getId as $getIds){
                 $getRoles = $getIds->account_number;
@@ -83,10 +101,21 @@ class StudentController extends Controller
             $message->to($data['email'])->subject($title_mail);
             $message->from($data['email'],$title_mail);
         });
-        $add->save();
-        // dd($add);
-        return Redirect()->Route('SHOW_UPLOAD')->with('message','Upload File Successfully!');
+        if( $now < $deadline ){
+          
+          
+            return Redirect()->Route('VIEW_SEMESTER')->with('message','Sorry deadline is time out!!');
+        }
+        
+        else {
+
+            $add->save();
+    
+            return Redirect()->Route('SHOW_UPLOAD')->with('message','Upload File Successfully!');
+        };
     }
+            
+        // dd($add);
 
     /**
      * Display the specified resource.
@@ -138,11 +167,14 @@ class StudentController extends Controller
         }
         // $created_at = $now;
         $input['student_description'] = $request->student_description;
+        
         $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y H:i:s');
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $input['updated_at'] = now();
         $student->update($input);
         // dd($student);
+
+       
 
         return Redirect()->Route('SHOW_UPLOAD')->with('message','Update Your Upload Successfully!');
     }
@@ -159,6 +191,10 @@ class StudentController extends Controller
     }
 
     public function StudentDashboard(){
-        return view('student.dashboardStudent');
+
+        $semester =  DB::table('semester')->get();
+        // dd($semester);
+        return view('student.dashboardStudent',compact('semester',$semester));
+    
     }
 }

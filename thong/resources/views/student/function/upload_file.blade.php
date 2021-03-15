@@ -15,7 +15,15 @@
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
-
+  @if(session()->has('message'))
+        <div class="alert alert-success">
+          {!! session()->get('message') !!}
+        </div>
+        @elseif(session()->has('error'))
+        <div class="alert alert-danger">
+          {!! session()->get('error') !!}
+        </div>
+  @endif
 <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -23,7 +31,7 @@
         <div class="col-md-8">
           <!-- general form elements -->
           <div class="card card-primary">
-            <div class="card-header">
+            <div class="card-header"> 
               <h3 class="card-title">Upload File</h3>
             </div>
             <!-- /.card-header -->
@@ -31,13 +39,16 @@
             <form action="{{URL('executeUpload')}}" method="POST" role="form" enctype="multipart/form-data">
               @csrf
               <div class="card-body">
+             
+             
                 <div class="form-group">
-                  <label for="exampleInputFile">Upload File</label>
+                  <label for="exampleInputFile">Upload File </label>
                   <div class="input-group">
                       <input type="file" name="student_uploadfile" class="custom-file-input" id="exampleInputFile">
                       <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                   </div>
                 </div>
+               
                 @if ($errors->has('student_uploadfile'))
                   <p class="help is-danger" style="color: red">Please upload your file!</p>
                 @endif
@@ -58,6 +69,17 @@
                 @if ($errors->has('student_description'))
                   <p class="help is-danger" style="color: red">Please write description for your upload!</p>
                 @endif
+                <div class="form-group">
+                  <label for="">Choose Semester</label>
+                  <select class= "form-control" id = "semester" name="semester">
+          
+                    <option  selected  >Choose you want submit!</option>
+                    @foreach($semester as $item)
+                    <option value="{{$item -> semester_name}}">{{$item -> semester_name}}</option>
+                    <!-- <option hidden id = enda value="{{$item ->end_date}}"></option> -->
+                    @endforeach
+                   
+                  </select>
                 {{-- <center> --}}
                 <div class="form-check">
                   <input type="checkbox" name="checkbox" class="form-check-input" id="exampleCheck1">

@@ -17,6 +17,7 @@ class SemesterController extends Controller
 
     public function add_semester()
     {
+    
         return view('admin.semester.create_semester');
     }
 

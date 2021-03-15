@@ -32,8 +32,9 @@ Route::get('account','AccountController@loginAccount')->name('ACCOUNT');
 Route::post('executeAccount','AccountController@executeLoginAccount');
 
 //Student Function
+Route::get('viewSemester','StudentController@viewSemester') ->name('VIEW_SEMESTER');
 Route::get('dashboardStudent','StudentController@StudentDashboard')->name('STUDENT');
-Route::get('fileUpload','StudentController@create')->name('FILE_UPLOAD');
+Route::get('fileUpload/{id}','StudentController@create')->name('FILE_UPLOAD');
 Route::post('executeUpload','StudentController@store');
 Route::get('showUpload','StudentController@index')->name('SHOW_UPLOAD');
 Route::resource('show_upload','StudentController')->only('edit', 'update');

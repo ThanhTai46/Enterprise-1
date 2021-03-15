@@ -59,6 +59,7 @@
                   <th>Date Update Upload</th>
                   <th>Edit</th>
                   <th>Download</th>
+                  <th>Semester</th>
                   <th>Comment</th>
                 </tr>
                 </thead>
@@ -88,6 +89,7 @@
                       Download
                     </a>
                   </td>
+                  <td>{{$datas->semester_id}}</td>
 
                   <td>{{$datas->comment}}</td>
                  

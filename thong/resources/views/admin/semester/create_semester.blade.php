@@ -43,6 +43,7 @@
                     <label>End Date:</label>
                     <input type="date" name="enddate" required id="datepicker2" class="form-control">
                 </div>
+            
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
