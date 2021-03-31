@@ -1,0 +1,1 @@
+<h2><a href="{{Route('ACCOUNT')}}">Coordinator: Click here</a> to comment!</h2>

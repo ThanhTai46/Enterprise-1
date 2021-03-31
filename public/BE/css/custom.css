@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: "Ubuntu", sans-serif;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+}
+.navbar {
+    position: fixed;
+    background: transparent;
+    width: 100%;
+    padding: 30px;
+    top: 0;
+    z-index: 10;
+    transition: 0.3s ease-in-out;
+}
+.sticky {
+    background: linear-gradient(-90deg, #61c3c8, #37bae9);
+    padding: 18px 0;
+}
+.sticky .nav-menu a {
+    color: #333;
+}
+.sticky .menu-toggler span {
+    background-color: #333;
+}
+.navbar .inner-width {
+    max-width: 1300px;
+    margin: auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    width: 44px;
+    height: 32px;
+    background-size: contain;
+    width: 30px;
+    border: none;
+    position: relative;
+    outline: none;
+    cursor: pointer;
+    z-index: 10;
+    display: none;
+}
+.menu-toggler span {
+    background-color: #fff;
+    height: 3px;
+    display: block;
+    margin: 6px 0;
+    position: relative;
+    transition: 0.2s linear;
+}
+.nav-menu a {
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.8rem;
+    margin-left: 30px;
+    transition: 0.2s linear;
+    padding: 16px;
+    align-items: center;
+    background-color: #37bae9;
+    border-radius: 3px;
+}
+.nav-menu a:hover {
+    color: rgb(245, 53, 47);
+}
+#home {
+    height: 100vh;
+    min-height: 500px;
+    background: url(../images/bg.jpg) no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+#home .inner-width {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+}
+.content {
+    color: #fff;
+    width: 100%;
+}
+h1 {
+    font-size: 6rem;
+    margin: 0 0 60px;
+}
+h1::after {
+    content: "Hi";
+    animation: textanim 15s linear infinite;
+}
+@keyframes textanim {
+    25% {
+        content: "We are Team 3";
+    }
+    50% {
+        content: " We Have 7 Member";
+    }
+    75% {
+        content: " Here is Web Enterprise Project";
+    }
+}
+.sm a {
+    color: #fff;
+    font-size: 2.3rem;
+    margin: 0 10px;
+    transition: 0.2s linear;
+}
+.sm a:hover {
+    color: aqua;
+}
+.buttons {
+    margin-top: 60px;
+}
+.buttons a {
+    display: inline-block;
+    color: #37bae9;
+    font-size: 1.5rem;
+    font-weight: 500px;
+    margin: 15px 30px;
+    border: 1px solid #37bae9;
+    padding: 14px;
+    width: 180px;
+    border-radius: 6px;
+}
+.buttons a:hover,
+.buttons a:nth-child(2) {
+    background-color: #37bae9;
+    color: #fff;
+}
+@media screen and (max-width: 980px) {
+    .menu-toggler {
+        display: block;
+    }
+    .nav-menu {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        background-color: #353b48;
+        max-width: 350px;
+        right: -100%;
+        top: 0;
+        padding: 80px 50px;
+        transition: 0.3s linear;
+    }
+    .nav-menu a {
+        display: flex;
+        font-size: 30px;
+        margin: 30px 0;
+        justify-content: center;
+    }
+    .sticky .nav-menu {
+        background: #f1f1f1;
+    }
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .menu-toggler.active span:nth-child(1) {
+        transform: rotate(-45deg);
+        top: 4px;
+    }
+
+    .menu-toggler.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggler.active span:nth-child(3) {
+        transform: rotate(45deg);
+        bottom: 14px;
+    }
+}
